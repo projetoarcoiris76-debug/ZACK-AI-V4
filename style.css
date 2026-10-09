@@ -1,0 +1,31 @@
+*{box-sizing:border-box}
+:root{--blue:#168dff;--gold:#ffc42e;--ink:#02040a;--text:#eaf4ff}
+html,body{margin:0;min-height:100%;width:100%}
+body{min-height:100vh;overflow:hidden;color:var(--text);background:var(--ink);font-family:Inter,"Segoe UI",Arial,sans-serif}
+button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+/* A arte contém o logo, o painel e os textos; os controles abaixo ficam por cima. */
+.login-screen{position:fixed;inset:0;width:100%;height:100dvh;background:#02040a url("zak-hub.png") center center/100% 100% no-repeat}
+.login-hotspots{position:absolute;inset:0}
+.password-input{position:absolute;left:33.45%;top:67.9%;width:29.7%;height:6.2%;min-height:34px;border:0;outline:0;padding:0 44px 0 12px;color:#f3f8ff;background:transparent;font-size:clamp(11px,1.05vw,17px);border-radius:8px}
+.password-input::placeholder{color:#a9b8ce;opacity:1}
+.password-input:focus{outline:1px solid rgba(0,157,255,.85);box-shadow:0 0 14px rgba(0,157,255,.3)}
+.toggle-password{position:absolute;left:63.05%;top:68.25%;width:3.1%;height:5.2%;min-width:30px;min-height:30px;display:grid;place-items:center;padding:0;border:0;border-radius:5px;color:#eef7ff;background:transparent}
+.toggle-password svg{width:clamp(15px,1.5vw,24px);fill:none;stroke:currentColor;stroke-width:2.4}
+.login-button{position:absolute;left:33.1%;top:77.1%;width:33.9%;height:7.1%;min-height:36px;padding:0;border:0;border-radius:18px;background:transparent;color:transparent}
+.login-button:focus-visible{outline:2px solid white;outline-offset:3px}
+.login-error{position:absolute;left:29%;top:84.7%;width:42%;margin:0;text-align:center;color:#ffb7b7;font-size:clamp(11px,1vw,15px);text-shadow:0 0 8px #000}
+.app{position:fixed;inset:0;overflow:auto;padding:clamp(16px,3vw,42px);background:radial-gradient(ellipse at 15% 15%,rgba(0,113,255,.17),transparent 42%),radial-gradient(ellipse at 85% 20%,rgba(255,184,0,.12),transparent 40%),#030610}
+.app-header{max-width:1050px;margin:0 auto 24px;display:flex;align-items:center;justify-content:space-between}
+.app-brand{display:flex;align-items:center;gap:12px}.brand-mark{font-size:35px;color:var(--gold);text-shadow:0 0 15px var(--gold)}
+.app-brand strong{display:block;font-size:26px;letter-spacing:5px}.app-brand small{display:block;color:#9db8d9;font-size:10px;letter-spacing:3px;margin-top:3px}
+.logout-button,.chat-form button{border:1px solid var(--blue);border-radius:8px;padding:11px 18px;color:white;background:linear-gradient(110deg,#0348b9,#07152d 60%,#6b4800);box-shadow:0 0 18px #007bff35}
+.chat-panel{width:min(100%,1050px);min-height:min(72vh,720px);margin:0 auto;padding:clamp(18px,3vw,32px);border:1px solid #1468b8;border-radius:18px;background:linear-gradient(145deg,rgba(5,15,35,.97),rgba(2,5,14,.97));box-shadow:0 0 35px #007bff22,inset 0 0 25px #007bff0b}
+.chat-heading h1{margin:0 0 8px;font-size:clamp(24px,3vw,34px)}.chat-heading p,.chat-status{color:#9eb2cc;line-height:1.5}
+.chat-messages{display:flex;flex-direction:column;gap:14px;margin:25px 0;min-height:240px}
+.message{max-width:85%;padding:14px 16px;border-radius:12px;line-height:1.5;overflow-wrap:anywhere}.message p{margin:6px 0 0;white-space:pre-wrap}
+.zak-message{align-self:flex-start;border:1px solid #126ec2;background:#07172b}.zak-message strong{color:#62b9ff;letter-spacing:2px}
+.user-message{align-self:flex-end;border:1px solid #b88b20;background:#211a0a}.user-message strong{color:#ffd35d;letter-spacing:2px}
+.chat-form{display:flex;gap:10px}.chat-form input{flex:1;min-width:0;padding:14px 16px;border-radius:9px;border:1px solid #285b8b;outline:0;color:white;background:#030a17}
+.chat-form input:focus{border-color:var(--blue);box-shadow:0 0 12px #008cff35}.chat-status{font-size:12px}
+@media(max-width:600px){.password-input{padding-left:7px;padding-right:22px}.toggle-password{min-width:20px;min-height:20px}.chat-form{flex-direction:column}.chat-form button{min-height:44px}.message{max-width:100%}}

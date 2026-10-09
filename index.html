@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#02040a">
+<title>ISAAC AI | ZAK</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="loginScreen" class="login-screen" aria-label="Login do ZAK">
+<form id="loginForm" class="login-hotspots">
+<label class="sr-only" for="password">Senha de acesso</label>
+<input id="password" class="password-input" type="password" placeholder="Digite sua senha..." autocomplete="current-password" required>
+<button id="togglePassword" class="toggle-password" type="button" aria-label="Mostrar senha" title="Mostrar/ocultar senha">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</button>
+<button id="loginBtn" class="login-button" type="submit" aria-label="Entrar no ZAK"></button>
+<p id="loginError" class="login-error" role="alert" aria-live="polite"></p>
+</form>
+</main>
+<main id="app" class="app hidden">
+<header class="app-header">
+<div class="app-brand"><span class="brand-mark">⚡</span><div><strong>ZAK</strong><small>SUA IA, SEM LIMITES</small></div></div>
+<button id="logoutBtn" class="logout-button" type="button">SAIR</button>
+</header>
+<section class="chat-panel">
+<div class="chat-heading"><h1>Central ZAK</h1><p>Bem-vindo! A interface está pronta. Para respostas da IA, configure seu servidor no app.js.</p></div>
+<div id="chatMessages" class="chat-messages" aria-live="polite"><div class="message zak-message"><strong>ZAK</strong><p>Login concluído! ⚡ Estou pronto para conversar quando meu servidor estiver conectado.</p></div></div>
+<form id="chatForm" class="chat-form"><input id="userInput" type="text" placeholder="Escreva sua mensagem..." autocomplete="off"><button id="sendBtn" type="submit">ENVIAR ⚡</button></form>
+<p id="chatStatus" class="chat-status">Modo de demonstração: configure a API no app.js para conectar sua IA.</p>
+</section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
