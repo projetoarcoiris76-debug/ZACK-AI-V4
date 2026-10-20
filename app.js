@@ -1,166 +1,255 @@
 /*
-  ZAK — ISAAC AI
+    ZAK — ISAAC AI
 
-  1. Altere TROQUE_PELA_SUA_SENHA para a senha que você escolheu.
-  2. Para conectar a inteligência artificial, configure API_URL
-     com o endereço do seu servidor.
-  3. Não coloque chaves secretas de API neste arquivo público.
+    LOGIN
+
+    Esta versão remove a senha.
+
+    IMPORTANTE:
+    Os botões abaixo são a interface.
+    A autenticação REAL será conectada depois
+    a um serviço de autenticação.
 */
 
-const DEMO_PASSWORD = "kinggamer123";
 
-// Exemplo: "https://seu-servidor.onrender.com/chat"
-const API_URL = "";
+const loginScreen =
+    document.getElementById("loginScreen");
 
-const loginScreen = document.getElementById("loginScreen");
-const loginForm = document.getElementById("loginForm");
-const passwordInput = document.getElementById("password");
-const togglePassword = document.getElementById("togglePassword");
-const loginError = document.getElementById("loginError");
+const app =
+    document.getElementById("app");
 
-const app = document.getElementById("app");
-const logoutBtn = document.getElementById("logoutBtn");
 
-const chatForm = document.getElementById("chatForm");
-const userInput = document.getElementById("userInput");
-const chatMessages = document.getElementById("chatMessages");
-const chatStatus = document.getElementById("chatStatus");
+const googleLogin =
+    document.getElementById("googleLogin");
 
-// Mostrar ou ocultar a senha
-togglePassword.addEventListener("click", () => {
-  const mostrar = passwordInput.type === "password";
+const microsoftLogin =
+    document.getElementById("microsoftLogin");
 
-  passwordInput.type = mostrar ? "text" : "password";
+const appleLogin =
+    document.getElementById("appleLogin");
 
-  togglePassword.setAttribute(
-    "aria-label",
-    mostrar ? "Ocultar senha" : "Mostrar senha"
-  );
-});
+const otherLogin =
+    document.getElementById("otherLogin");
 
-// Verificar a senha e abrir o painel
-loginForm.addEventListener("submit", (event) => {
-  event.preventDefault();
 
-  if (passwordInput.value === DEMO_PASSWORD) {
-    loginError.textContent = "";
+const loginMessage =
+    document.getElementById("loginMessage");
+
+
+const logoutBtn =
+    document.getElementById("logoutBtn");
+
+
+const chatForm =
+    document.getElementById("chatForm");
+
+const userInput =
+    document.getElementById("userInput");
+
+const chatMessages =
+    document.getElementById("chatMessages");
+
+const chatStatus =
+    document.getElementById("chatStatus");
+
+
+/*
+    FUNÇÃO PARA ABRIR O ZAK
+*/
+
+function entrarNoZak(nome) {
+
+    loginMessage.textContent = "";
 
     loginScreen.classList.add("hidden");
+
     app.classList.remove("hidden");
 
+    chatStatus.textContent =
+        "Conectado como " + nome;
+
     userInput.focus();
-  } else {
-    loginError.textContent = "Senha incorreta. Tente novamente.";
-
-    passwordInput.select();
-  }
-});
-
-// Sair do painel
-logoutBtn.addEventListener("click", () => {
-  app.classList.add("hidden");
-  loginScreen.classList.remove("hidden");
-
-  passwordInput.value = "";
-  loginError.textContent = "";
-
-  passwordInput.focus();
-});
-
-// Adicionar mensagens ao chat
-function adicionarMensagem(texto, autor) {
-  const mensagem = document.createElement("div");
-
-  mensagem.className =
-    "message " +
-    (autor === "user" ? "user-message" : "zak-message");
-
-  const nome = document.createElement("strong");
-
-  nome.textContent = autor === "user" ? "VOCÊ" : "ZAK";
-
-  const conteudo = document.createElement("p");
-
-  conteudo.textContent = texto;
-
-  mensagem.appendChild(nome);
-  mensagem.appendChild(conteudo);
-
-  chatMessages.appendChild(mensagem);
-
-  mensagem.scrollIntoView({
-    behavior: "smooth",
-    block: "nearest"
-  });
 }
 
-// Enviar mensagem para o chat
-chatForm.addEventListener("submit", async (event) => {
-  event.preventDefault();
 
-  const texto = userInput.value.trim();
+/*
+    GOOGLE
+*/
 
-  if (!texto) {
-    return;
-  }
+googleLogin.addEventListener(
+    "click",
+    () => {
 
-  adicionarMensagem(texto, "user");
+        loginMessage.textContent =
+            "Login com Google será conectado na próxima etapa.";
 
-  userInput.value = "";
-  userInput.focus();
+    }
+);
 
-  // Se o servidor ainda não foi configurado
-  if (!API_URL) {
-    adicionarMensagem(
-      "Minha interface está funcionando! ⚡ Porém, meu servidor de inteligência artificial ainda não está conectado. Configure o endereço da API no app.js para eu responder usando sua IA.",
-      "zak"
-    );
 
-    chatStatus.textContent =
-      "Servidor da IA não configurado.";
+/*
+    MICROSOFT
+*/
 
-    return;
-  }
+microsoftLogin.addEventListener(
+    "click",
+    () => {
 
-  chatStatus.textContent = "ZAK está pensando...";
+        loginMessage.textContent =
+            "Login com Microsoft será conectado na próxima etapa.";
 
-  try {
-    const resposta = await fetch(API_URL, {
-      method: "POST",
+    }
+);
 
-      headers: {
-        "Content-Type": "application/json"
-      },
 
-      body: JSON.stringify({
-        message: texto
-      })
+/*
+    APPLE / ICLOUD
+*/
+
+appleLogin.addEventListener(
+    "click",
+    () => {
+
+        loginMessage.textContent =
+            "Login com Apple/iCloud será conectado na próxima etapa.";
+
+    }
+);
+
+
+/*
+    OUTRO MÉTODO
+*/
+
+otherLogin.addEventListener(
+    "click",
+    () => {
+
+        loginMessage.textContent =
+            "Outros métodos de login serão adicionados depois.";
+
+    }
+);
+
+
+/*
+    SAIR
+*/
+
+logoutBtn.addEventListener(
+    "click",
+    () => {
+
+        app.classList.add("hidden");
+
+        loginScreen.classList.remove("hidden");
+
+        loginMessage.textContent = "";
+
+    }
+);
+
+
+/*
+    CHAT
+*/
+
+function adicionarMensagem(
+    texto,
+    autor
+) {
+
+    const mensagem =
+        document.createElement("div");
+
+
+    mensagem.className =
+        "message " +
+        (
+            autor === "user"
+                ? "user-message"
+                : "zak-message"
+        );
+
+
+    const nome =
+        document.createElement("strong");
+
+
+    nome.textContent =
+        autor === "user"
+            ? "VOCÊ"
+            : "ZAK";
+
+
+    const conteudo =
+        document.createElement("p");
+
+
+    conteudo.textContent =
+        texto;
+
+
+    mensagem.appendChild(nome);
+
+    mensagem.appendChild(conteudo);
+
+    chatMessages.appendChild(mensagem);
+
+
+    mensagem.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest"
     });
 
-    if (!resposta.ok) {
-      throw new Error("Erro HTTP: " + resposta.status);
+}
+
+
+/*
+    ENVIAR MENSAGEM
+*/
+
+chatForm.addEventListener(
+    "submit",
+    (event) => {
+
+        event.preventDefault();
+
+
+        const texto =
+            userInput.value.trim();
+
+
+        if (!texto) {
+            return;
+        }
+
+
+        adicionarMensagem(
+            texto,
+            "user"
+        );
+
+
+        userInput.value = "";
+
+
+        /*
+            Temporariamente o ZAK responde
+            enquanto o backend não estiver conectado.
+        */
+
+        setTimeout(
+            () => {
+
+                adicionarMensagem(
+                    "Recebi sua mensagem! ⚡ Meu cérebro ainda precisa ser conectado ao servidor.",
+                    "zak"
+                );
+
+            },
+            500
+        );
+
     }
-
-    const dados = await resposta.json();
-
-    const textoResposta =
-      dados.reply ??
-      dados.response ??
-      dados.message ??
-      "O servidor respondeu, mas não encontrei o texto da resposta.";
-
-    adicionarMensagem(String(textoResposta), "zak");
-
-    chatStatus.textContent = "Conectado ao servidor.";
-  } catch (erro) {
-    console.error("Erro ao conectar com o servidor:", erro);
-
-    adicionarMensagem(
-      "Não consegui conectar ao meu servidor agora. Verifique se ele está online e se o endereço da API está correto.",
-      "zak"
-    );
-
-    chatStatus.textContent =
-      "Falha de conexão com a IA.";
-  }
-});
+);
