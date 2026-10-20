@@ -7,7 +7,7 @@
   3. Não coloque chaves secretas de API neste arquivo público.
 */
 
-const DEMO_PASSWORD = "TROQUE_PELA_SUA_SENHA";
+const DEMO_PASSWORD = "kinggamer123";
 
 // Exemplo: "https://seu-servidor.onrender.com/chat"
 const API_URL = "";
