@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    font-family: Arial, sans-serif;
+    color: white;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #102b55,
+            #030914 65%
+        );
+
+    background-color: #030914;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 420px;
+    padding: 40px 30px;
+
+    text-align: center;
+
+    background: rgba(3, 12, 30, 0.94);
+
+    border: 1px solid #176bff;
+    border-radius: 20px;
+
+    box-shadow:
+        0 0 25px rgba(0, 102, 255, 0.25);
+}
+
+.logo {
+    margin-bottom: 20px;
+
+    font-size: 48px;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+    text-shadow: 0 0 15px #087bff;
+}
+
+.logo span {
+    color: #ffd166;
+}
+
+h1 {
+    margin-bottom: 12px;
+    font-size: 27px;
+}
+
+.subtitle {
+    margin-bottom: 30px;
+    color: #a9b9d4;
+    font-size: 14px;
+}
+
+.login-button {
+    width: 100%;
+    min-height: 52px;
+    margin-bottom: 14px;
+    padding: 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    border-radius: 10px;
+    border: 1px solid #34435e;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.login-button span {
+    font-size: 20px;
+}
+
+.google {
+    background: #f4f6fa;
+    color: #172033;
+}
+
+.microsoft {
+    background: #101b30;
+    color: white;
+}
+
+.apple {
+    background: #000;
+    color: white;
+}
+
+.login-button:hover {
+    border-color: #ffd166;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+.login-button:focus-visible {
+    outline: 2px solid #ffd166;
+    outline-offset: 3px;
+}
+
+#login-message {
+    min-height: 20px;
+    margin-top: 12px;
+    color: #ffd166;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+.footer {
+    margin-top: 25px;
+    color: #8190a9;
+    font-size: 12px;
+}
+
+@media (max-width: 400px) {
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+}
