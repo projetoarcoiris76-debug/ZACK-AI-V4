@@ -6,111 +6,111 @@ import {
     GoogleAuthProvider,
     OAuthProvider,
     signInWithPopup,
-    onAuthStateChanged
+    onAuthStateChanged,
+    signOut
 } from
     "https://www.gstatic.com/firebasejs/12.0.0/firebase-auth.js";
 
-// 1. CONFIGURAÇÃO DO FIREBASE
-// Substitui pelos dados do teu projeto Firebase.
-
+// SUBSTITUI PELOS DADOS DO TEU PROJETO FIREBASE.
 const firebaseConfig = {
-    apiKey: "COLOCA_TUA_API_KEY",
+    apiKey: "TUA_API_KEY",
     authDomain: "TEU_PROJETO.firebaseapp.com",
     projectId: "TEU_PROJECT_ID",
     appId: "TEU_APP_ID"
 };
 
-// 2. INICIALIZAR FIREBASE
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-// 3. ELEMENTOS DA TELA
+const loginScreen = document.getElementById("login-screen");
+const zakHub = document.getElementById("zak-hub");
+const loginMessage = document.getElementById("login-message");
 
-const message = document.getElementById("login-message");
+function mostrarLogin() {
+    loginScreen.hidden = false;
+    zakHub.hidden = true;
+}
 
-const googleButton = document.getElementById("google-login");
-const microsoftButton = document.getElementById("microsoft-login");
-const appleButton = document.getElementById("apple-login");
+function mostrarHub() {
+    loginScreen.hidden = true;
+    zakHub.hidden = false;
+}
 
-// 4. DESTINO APÓS LOGIN
-// Altera "hub.html" caso o teu hub tenha outro nome.
-
-const HUB_URL = "./hub.html";
-
-// 5. LOGIN COM GOOGLE
-
-googleButton.addEventListener("click", async () => {
-    const provider = new GoogleAuthProvider();
-
-    await login(provider);
-});
-
-// 6. LOGIN COM MICROSOFT
-
-microsoftButton.addEventListener("click", async () => {
-    const provider = new OAuthProvider("microsoft.com");
-
-    await login(provider);
-});
-
-// 7. LOGIN COM APPLE
-
-appleButton.addEventListener("click", async () => {
-    const provider = new OAuthProvider("apple.com");
-
-    provider.addScope("email");
-    provider.addScope("name");
-
-    await login(provider);
-});
-
-// 8. FUNÇÃO DE AUTENTICAÇÃO
-
-async function login(provider) {
-    message.textContent = "Aguarda, a verificar a tua conta...";
-
-    googleButton.disabled = true;
-    microsoftButton.disabled = true;
-    appleButton.disabled = true;
+async function entrar(provider) {
+    loginMessage.textContent = "A verificar a tua conta...";
 
     try {
         await signInWithPopup(auth, provider);
-
-        window.location.replace(HUB_URL);
-
     } catch (error) {
-        console.error("Erro de autenticação:", error);
+        console.error(error);
 
-        const messages = {
+        const mensagens = {
             "auth/popup-closed-by-user":
                 "O login foi cancelado.",
 
             "auth/popup-blocked":
-                "O navegador bloqueou a janela de login.",
+                "Permite janelas pop-up no navegador.",
 
             "auth/unauthorized-domain":
-                "Este domínio ainda não está autorizado no Firebase.",
+                "Adiciona o domínio do site às configurações do Firebase.",
 
             "auth/operation-not-allowed":
-                "Este método de login ainda não foi ativado no Firebase."
+                "Ativa este método de login no Firebase."
         };
 
-        message.textContent =
-            messages[error.code] ||
-            "Não foi possível entrar. Verifica a configuração e tenta novamente.";
-
-    } finally {
-        googleButton.disabled = false;
-        microsoftButton.disabled = false;
-        appleButton.disabled = false;
+        loginMessage.textContent =
+            mensagens[error.code] ||
+            "Não foi possível entrar. Verifica a configuração do Firebase.";
     }
 }
 
-// 9. VERIFICAR SE JÁ EXISTE UMA SESSÃO
+document.getElementById("google-login").onclick = () => {
+    entrar(new GoogleAuthProvider());
+};
 
+document.getElementById("microsoft-login").onclick = () => {
+    entrar(new OAuthProvider("microsoft.com"));
+};
+
+document.getElementById("apple-login").onclick = () => {
+    const provider = new OAuthProvider("apple.com");
+    provider.addScope("email");
+    provider.addScope("name");
+    entrar(provider);
+};
+
+document.getElementById("logout-button").onclick = async () => {
+    await signOut(auth);
+};
+
+// O estado real da autenticação controla as telas.
 onAuthStateChanged(auth, (user) => {
-    if (user && window.location.pathname.endsWith("/login.html")) {
-        window.location.replace(HUB_URL);
+    if (user) {
+        mostrarHub();
+    } else {
+        mostrarLogin();
     }
+});
+
+// Demonstração da interface de conversa.
+// Isto não conecta a uma IA real.
+document.getElementById("chat-form").addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const input = document.getElementById("user-message");
+    const messages = document.getElementById("messages");
+    const texto = input.value.trim();
+
+    if (!texto) return;
+
+    const mensagem = document.createElement("p");
+    mensagem.textContent = "Você: " + texto;
+    messages.appendChild(mensagem);
+
+    const resposta = document.createElement("p");
+    resposta.textContent =
+        "ZAK: A área de conversa está pronta para ser conectada à IA.";
+    messages.appendChild(resposta);
+
+    input.value = "";
 });
