@@ -1,257 +1,94 @@
-/* =========================================
-   NOVO LOGIN
-========================================= */
+/* ===== ISAAC AI — ESTÉTICA ZAK ===== */
 
-.login-screen {
-    position: fixed;
-    inset: 0;
-
-    width: 100%;
-    height: 100vh;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        #02040a url("zak-hub.png")
-        center center / cover
-        no-repeat;
-
-    z-index: 10;
+body {
+    background-color: #020817;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
 }
 
-
+/* Painéis futuristas */
+.panel,
+.hub,
+.chat-container,
 .login-container {
+    background: linear-gradient(
+        145deg,
+        rgba(2, 12, 35, 0.97),
+        rgba(0, 0, 0, 0.95)
+    );
 
-    width: min(420px, 90vw);
-
-    padding: 30px;
-
-    text-align: center;
-
-    border-radius: 20px;
-
-    background:
-        rgba(2, 7, 18, 0.82);
-
-    border:
-        1px solid rgba(0, 145, 255, 0.45);
+    border: 1px solid #087bff;
+    border-radius: 16px;
 
     box-shadow:
-        0 0 35px rgba(0, 130, 255, 0.22),
-        inset 0 0 25px rgba(0, 130, 255, 0.08);
-
-    backdrop-filter: blur(8px);
+        0 0 12px rgba(0, 102, 255, 0.5),
+        inset 0 0 15px rgba(0, 102, 255, 0.08);
 }
 
+/* Títulos azuis e dourados */
+h1,
+h2,
+h3 {
+    color: #eaf4ff;
+    text-shadow: 0 0 12px rgba(0, 119, 255, 0.8);
+}
 
-.zak-logo {
-
-    font-size: 58px;
-
-    font-weight: 900;
-
-    letter-spacing: 10px;
+/* Botões de energia */
+button {
+    background: linear-gradient(
+        90deg,
+        #006aff,
+        #06152d,
+        #b8860b
+    );
 
     color: white;
-
-    text-shadow:
-        0 0 10px #008cff,
-        0 0 25px #008cff;
-}
-
-
-.zak-subtitle {
-
-    margin-top: 5px;
-
-    margin-bottom: 28px;
-
-    font-size: 11px;
-
-    letter-spacing: 4px;
-
-    color: #9bc9ff;
-}
-
-
-.login-title {
-
-    margin-bottom: 18px;
-
-    color: #dcecff;
-
-    font-weight: bold;
-
-    letter-spacing: 2px;
-}
-
-
-.social-login {
-
-    width: 100%;
-
-    height: 50px;
-
-    margin-top: 12px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 12px;
-
+    border: 1px solid #ffc83d;
     border-radius: 10px;
-
+    padding: 12px 20px;
     cursor: pointer;
 
-    font-weight: 600;
-
-    transition: 0.2s;
+    transition: 0.3s ease;
 }
 
-
-.google-login {
-
-    background: white;
-
-    color: #222;
-
-    border: 1px solid #ddd;
-}
-
-
-.microsoft-login {
-
-    background: #0879d1;
-
-    color: white;
-
-    border: 1px solid #36a8ff;
-}
-
-
-.apple-login {
-
-    background: #050505;
-
-    color: white;
-
-    border: 1px solid #555;
-}
-
-
-.social-login:hover {
+button:hover {
+    box-shadow:
+        0 0 12px #008cff,
+        0 0 24px rgba(255, 190, 30, 0.5);
 
     transform: translateY(-2px);
-
-    filter: brightness(1.08);
-
 }
 
-
-.login-icon {
-
-    font-weight: 900;
-
-    font-size: 18px;
-}
-
-
-.apple-icon {
-
-    font-size: 23px;
-}
-
-
-.microsoft-icon {
-
-    font-size: 20px;
-}
-
-
-.login-divider {
-
-    display: flex;
-
-    align-items: center;
-
-    gap: 12px;
-
-    margin: 22px 0;
-
-    color: #7890aa;
-}
-
-
-.login-divider span {
-
-    flex: 1;
-
-    height: 1px;
-
-    background: #28415d;
-}
-
-
-.login-divider p {
-
-    margin: 0;
-}
-
-
-.other-login {
-
-    width: 100%;
-
-    height: 46px;
-
-    border-radius: 10px;
-
-    background: transparent;
-
-    color: #a9c8e8;
-
-    border: 1px solid #24567f;
-
-    cursor: pointer;
-}
-
-
-.other-login:hover {
-
+/* Campos de texto */
+input,
+textarea {
+    background: #030b1b;
     color: white;
-
-    border-color: #008cff;
-
-    box-shadow:
-        0 0 15px rgba(0,140,255,.2);
+    border: 1px solid #087bff;
+    border-radius: 8px;
+    padding: 12px;
 }
 
-
-.login-message {
-
-    min-height: 20px;
-
-    margin-top: 16px;
-
-    color: #ffd05a;
-
-    font-size: 13px;
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: #ffd34f;
+    box-shadow: 0 0 12px #087bff;
 }
 
+/* Detalhes dourados */
+.gold,
+.accent-gold {
+    color: #ffd34f;
+}
 
-.login-info {
+/* Efeito de energia */
+@keyframes zak-energy {
+    0%, 100% {
+        box-shadow: 0 0 5px #087bff;
+    }
 
-    margin-top: 20px;
-
-    color: #667d98;
-
-    font-size: 10px;
-
-    line-height: 1.5;
+    50% {
+        box-shadow: 0 0 18px #087bff;
+    }
 }
