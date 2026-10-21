@@ -3,255 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>ISAAC AI | ZAK</title>
-
+    <title>ZAK — Sua IA, sem limites</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <!-- =========================================
-         TELA DE LOGIN
-    ========================================== -->
+    <!-- TELA DE LOGIN -->
+    <section id="login-screen" class="panel">
+        <h1>ZAK <span>⚡</span></h1>
+        <p>SUA IA, SEM LIMITES</p>
+        <h2>ENTRAR NO ZAK</h2>
+        <p>Escolha uma conta para continuar.</p>
 
-    <main id="loginScreen" class="login-screen">
+        <button id="google-login">G Continuar com Google</button>
+        <button id="microsoft-login">⊞ Continuar com Microsoft</button>
+        <button id="apple-login">Continuar com Apple / iCloud</button>
 
-        <div class="login-container">
+        <p id="login-message" role="status"></p>
+        <p>Ao entrar, você concorda com os termos de uso do ZAK.</p>
+    </section>
 
-            <div class="zak-logo">
-                ZAK
-            </div>
-
-            <div class="zak-subtitle">
-                SUA IA, SEM LIMITES
-            </div>
-
-            <p class="login-title">
-                ENTRAR NO ZAK
-            </p>
-
-            <!-- GOOGLE -->
-
-            <button
-                id="googleLogin"
-                class="social-login google-login"
-                type="button"
-            >
-
-                <span class="login-icon">
-                    G
-                </span>
-
-                <span>
-                    Continuar com Google
-                </span>
-
-            </button>
-
-
-            <!-- MICROSOFT -->
-
-            <button
-                id="microsoftLogin"
-                class="social-login microsoft-login"
-                type="button"
-            >
-
-                <span class="login-icon microsoft-icon">
-                    ▦
-                </span>
-
-                <span>
-                    Continuar com Microsoft
-                </span>
-
-            </button>
-
-
-            <!-- APPLE / ICLOUD -->
-
-            <button
-                id="appleLogin"
-                class="social-login apple-login"
-                type="button"
-            >
-
-                <span class="login-icon apple-icon">
-                    
-                </span>
-
-                <span>
-                    Continuar com Apple / iCloud
-                </span>
-
-            </button>
-
-
-            <div class="login-divider">
-
-                <span></span>
-
-                <p>
-                    ou
-                </p>
-
-                <span></span>
-
-            </div>
-
-
-            <!-- OUTRO MÉTODO -->
-
-            <button
-                id="otherLogin"
-                class="other-login"
-                type="button"
-            >
-
-                OUTRO MÉTODO DE LOGIN
-
-            </button>
-
-
-            <p
-                id="loginMessage"
-                class="login-message"
-            ></p>
-
-
-            <p class="login-info">
-
-                Ao entrar, você concorda com os termos
-                de uso do ZAK.
-
-            </p>
-
-        </div>
-
-    </main>
-
-
-    <!-- =========================================
-         PAINEL DO ZAK
-    ========================================== -->
-
-    <main
-        id="app"
-        class="app hidden"
-    >
-
-        <header class="app-header">
-
-            <div class="app-brand">
-
-                <div class="brand-mark">
-                    ⚡
-                </div>
-
-                <div>
-
-                    <strong>
-                        ZAK
-                    </strong>
-
-                    <small>
-                        SUA IA, SEM LIMITES
-                    </small>
-
-                </div>
-
-            </div>
-
-
-            <button
-                id="logoutBtn"
-                class="logout-button"
-                type="button"
-            >
-
-                SAIR
-
-            </button>
-
+    <!-- HUB PRINCIPAL -->
+    <main id="zak-hub" class="panel" hidden>
+        <header>
+            <h1>⚡ ZAK</h1>
+            <p>SUA IA, SEM LIMITES</p>
+            <button id="logout-button">SAIR</button>
         </header>
 
+        <h2>Central ZAK</h2>
+        <p>Bem-vindo ao seu assistente.</p>
 
-        <section class="chat-panel">
-
-            <div class="chat-heading">
-
-                <h1>
-                    Central ZAK
-                </h1>
-
-                <p>
-                    Bem-vindo ao seu assistente.
-                </p>
-
+        <section id="chat">
+            <div id="messages">
+                <p><strong>ZAK:</strong> Login concluído! Estou pronto para conversar.</p>
             </div>
 
-
-            <div
-                id="chatMessages"
-                class="chat-messages"
-            >
-
-                <div class="message zak-message">
-
-                    <strong>
-                        ZAK
-                    </strong>
-
-                    <p>
-                        Login concluído! ⚡
-                        Estou pronto para conversar.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <form
-                id="chatForm"
-                class="chat-form"
-            >
-
+            <form id="chat-form">
                 <input
-                    id="userInput"
+                    id="user-message"
                     type="text"
                     placeholder="Escreva sua mensagem..."
                     autocomplete="off"
+                    required
                 >
-
-                <button
-                    id="sendBtn"
-                    type="submit"
-                >
-
-                    ENVIAR ⚡
-
-                </button>
-
+                <button type="submit">ENVIAR ⚡</button>
             </form>
-
-
-            <p
-                id="chatStatus"
-                class="chat-status"
-            >
-
-                ZAK conectado.
-
-            </p>
-
         </section>
-
     </main>
 
-
-    <script src="app.js"></script>
-
+    <script type="module" src="login.js"></script>
 </body>
 </html>
