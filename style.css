@@ -1,94 +1,96 @@
-/* ===== ISAAC AI — ESTÉTICA ZAK ===== */
+* {
+    box-sizing: border-box;
+}
 
 body {
-    background-color: #020817;
-    color: #ffffff;
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px;
     font-family: Arial, sans-serif;
+    color: #edf5ff;
+    background: radial-gradient(ellipse at top, #10254b, #020611 75%);
 }
 
-/* Painéis futuristas */
-.panel,
-.hub,
-.chat-container,
-.login-container {
-    background: linear-gradient(
-        145deg,
-        rgba(2, 12, 35, 0.97),
-        rgba(0, 0, 0, 0.95)
-    );
-
+.panel {
+    width: 100%;
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 30px;
+    background: rgba(3, 12, 30, 0.96);
     border: 1px solid #087bff;
-    border-radius: 16px;
-
-    box-shadow:
-        0 0 12px rgba(0, 102, 255, 0.5),
-        inset 0 0 15px rgba(0, 102, 255, 0.08);
+    border-radius: 18px;
+    box-shadow: 0 0 25px #087bff30;
 }
 
-/* Títulos azuis e dourados */
-h1,
-h2,
-h3 {
-    color: #eaf4ff;
-    text-shadow: 0 0 12px rgba(0, 119, 255, 0.8);
+h1 {
+    color: #fff;
+    text-shadow: 0 0 14px #087bff;
 }
 
-/* Botões de energia */
+h1 span {
+    color: #ffd166;
+}
+
+h2 {
+    margin-top: 28px;
+}
+
+p {
+    line-height: 1.6;
+}
+
 button {
-    background: linear-gradient(
-        90deg,
-        #006aff,
-        #06152d,
-        #b8860b
-    );
-
+    margin: 8px 5px 8px 0;
+    padding: 13px 18px;
+    border: 1px solid #ffd166;
+    border-radius: 9px;
     color: white;
-    border: 1px solid #ffc83d;
-    border-radius: 10px;
-    padding: 12px 20px;
+    background: linear-gradient(100deg, #006aff, #101b35, #b8860b);
     cursor: pointer;
-
-    transition: 0.3s ease;
 }
 
 button:hover {
-    box-shadow:
-        0 0 12px #008cff,
-        0 0 24px rgba(255, 190, 30, 0.5);
-
-    transform: translateY(-2px);
+    box-shadow: 0 0 15px #087bff;
 }
 
-/* Campos de texto */
-input,
-textarea {
-    background: #030b1b;
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+input {
+    width: min(100%, 450px);
+    padding: 13px;
     color: white;
+    background: #030b1b;
     border: 1px solid #087bff;
     border-radius: 8px;
-    padding: 12px;
 }
 
-input:focus,
-textarea:focus {
-    outline: none;
-    border-color: #ffd34f;
-    box-shadow: 0 0 12px #087bff;
+#messages {
+    margin: 20px 0;
+    overflow-wrap: anywhere;
 }
 
-/* Detalhes dourados */
-.gold,
-.accent-gold {
-    color: #ffd34f;
+#login-message {
+    color: #ffd166;
 }
 
-/* Efeito de energia */
-@keyframes zak-energy {
-    0%, 100% {
-        box-shadow: 0 0 5px #087bff;
+[hidden] {
+    display: none !important;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
     }
 
-    50% {
-        box-shadow: 0 0 18px #087bff;
+    .panel {
+        margin: 15px auto;
+        padding: 20px;
+    }
+
+    button {
+        max-width: 100%;
     }
 }
