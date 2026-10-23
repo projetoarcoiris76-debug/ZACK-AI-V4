@@ -1,96 +1,705 @@
+/* =========================
+   RESET
+========================= */
+
 * {
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 
 body {
-    margin: 0;
-    min-height: 100vh;
-    padding: 24px;
-    font-family: Arial, sans-serif;
-    color: #edf5ff;
-    background: radial-gradient(ellipse at top, #10254b, #020611 75%);
+  font-family: Arial, Helvetica, sans-serif;
+  background: #020711;
+  color: white;
 }
 
-.panel {
-    width: 100%;
-    max-width: 850px;
-    margin: 40px auto;
-    padding: 30px;
-    background: rgba(3, 12, 30, 0.96);
-    border: 1px solid #087bff;
-    border-radius: 18px;
-    box-shadow: 0 0 25px #087bff30;
+
+/* =========================
+   LOGIN
+========================= */
+
+#login-screen {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(0, 100, 255, 0.15),
+      transparent 45%
+    ),
+    #020711;
+
+  overflow: hidden;
 }
 
-h1 {
-    color: #fff;
-    text-shadow: 0 0 14px #087bff;
+
+/* imagem do hub */
+
+#login-screen::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 5, 15, 0.42),
+      rgba(0, 5, 15, 0.58)
+    ),
+    url("zak-hub(2).png");
+
+  background-size: cover;
+  background-position: center;
+
+  opacity: 0.9;
+
+  z-index: 0;
 }
 
-h1 span {
-    color: #ffd166;
+
+/* efeito escuro */
+
+#login-screen::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 190, 0, 0.08),
+      transparent 30%,
+      transparent 70%,
+      rgba(0, 110, 255, 0.1)
+    );
+
+  pointer-events: none;
+  z-index: 1;
 }
 
-h2 {
-    margin-top: 28px;
+
+/* =========================
+   CONTAINER
+========================= */
+
+.login-container {
+  position: relative;
+
+  width: min(560px, 90vw);
+
+  z-index: 5;
+
+  text-align: center;
 }
 
-p {
-    line-height: 1.6;
+
+/* =========================
+   LOGO
+========================= */
+
+.zak-logo {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 0;
+
+  height: 70px;
+
+  margin-bottom: 5px;
 }
 
-button {
-    margin: 8px 5px 8px 0;
-    padding: 13px 18px;
-    border: 1px solid #ffd166;
-    border-radius: 9px;
-    color: white;
-    background: linear-gradient(100deg, #006aff, #101b35, #b8860b);
-    cursor: pointer;
+.lightning {
+  font-size: 58px;
+
+  filter:
+    drop-shadow(0 0 10px currentColor)
+    drop-shadow(0 0 25px currentColor);
 }
 
-button:hover {
-    box-shadow: 0 0 15px #087bff;
+.lightning.gold {
+  color: #ffd21c;
+
+  transform: rotate(-18deg);
 }
 
-button:disabled {
-    opacity: 0.6;
-    cursor: wait;
+.lightning.blue {
+  color: #149dff;
+
+  transform: rotate(18deg);
 }
 
-input {
-    width: min(100%, 450px);
-    padding: 13px;
-    color: white;
-    background: #030b1b;
-    border: 1px solid #087bff;
-    border-radius: 8px;
+
+/* =========================
+   TITULO
+========================= */
+
+.login-container > h1 {
+
+  font-size: 72px;
+
+  letter-spacing: 8px;
+
+  margin-top: -5px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffffff,
+      #65d7ff,
+      #ffffff,
+      #ffd42a
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  text-shadow:
+    0 0 15px rgba(0, 160, 255, 0.8),
+    0 0 35px rgba(255, 190, 0, 0.3);
 }
 
-#messages {
-    margin: 20px 0;
-    overflow-wrap: anywhere;
+
+.subtitle {
+
+  margin-top: -5px;
+
+  font-size: 13px;
+
+  letter-spacing: 7px;
+
+  color: #c8d8e8;
+
+  text-shadow:
+    0 0 10px #168cff;
 }
 
-#login-message {
-    color: #ffd166;
+
+/* =========================
+   LOGIN BOX
+========================= */
+
+.login-box {
+
+  position: relative;
+
+  margin: 25px auto 0;
+
+  width: min(520px, 92vw);
+
+  padding: 38px;
+
+  border-radius: 22px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(4, 18, 45, 0.94),
+      rgba(2, 8, 20, 0.97)
+    );
+
+  border: 1px solid rgba(0, 156, 255, 0.9);
+
+  box-shadow:
+
+    0 0 20px rgba(0, 140, 255, 0.45),
+
+    0 0 55px rgba(0, 100, 255, 0.18),
+
+    inset 0 0 30px rgba(0, 120, 255, 0.08);
+
 }
 
-[hidden] {
-    display: none !important;
+
+/* detalhes dourados */
+
+.login-box::before {
+
+  content: "";
+
+  position: absolute;
+
+  top: -2px;
+  left: 12%;
+
+  width: 76%;
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #00aaff,
+      #ffd21c,
+      #00aaff,
+      transparent
+    );
+
+  box-shadow:
+    0 0 12px #00aaff,
+    0 0 20px #ffd21c;
 }
 
-@media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
 
-    .panel {
-        margin: 15px auto;
-        padding: 20px;
-    }
+/* =========================
+   TEXTO
+========================= */
 
-    button {
-        max-width: 100%;
-    }
+.login-box h2 {
+
+  font-size: 27px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 8px;
+
+  text-shadow:
+    0 0 12px rgba(255,255,255,.5);
+}
+
+.login-description {
+
+  color: #9caec4;
+
+  margin-bottom: 24px;
+
+  font-size: 15px;
+}
+
+
+/* =========================
+   BOTÕES
+========================= */
+
+.login-button {
+
+  width: 100%;
+
+  height: 52px;
+
+  margin-bottom: 12px;
+
+  border-radius: 9px;
+
+  border: 1px solid rgba(255,255,255,.2);
+
+  background: rgba(5, 14, 30, .85);
+
+  color: white;
+
+  cursor: pointer;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  transition: .25s;
+
+}
+
+
+/* ícone */
+
+.login-icon {
+
+  width: 25px;
+
+  font-size: 20px;
+
+  font-weight: bold;
+}
+
+
+/* hover */
+
+.login-button:hover {
+
+  transform: translateY(-2px);
+
+  background:
+    rgba(20, 50, 90, .95);
+
+  box-shadow:
+    0 0 18px rgba(0, 150, 255, .4);
+}
+
+
+/* google */
+
+.google:hover {
+  border-color: #4285f4;
+}
+
+
+/* microsoft */
+
+.microsoft:hover {
+  border-color: #00a4ef;
+}
+
+
+/* apple */
+
+.apple:hover {
+  border-color: white;
+}
+
+
+/* =========================
+   LINHA
+========================= */
+
+.login-line {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin: 20px 0;
+
+  color: #68788d;
+
+  font-size: 13px;
+}
+
+.login-line::before,
+.login-line::after {
+
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #27415d
+    );
+}
+
+
+/* =========================
+   BOTÃO ZAK
+========================= */
+
+.enter-zak {
+
+  width: 100%;
+
+  height: 58px;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 18px;
+
+  font-weight: bold;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      90deg,
+      #006cff,
+      #00aaff,
+      #ffd21c
+    );
+
+  box-shadow:
+
+    0 0 15px rgba(0, 150, 255, .5),
+
+    0 0 30px rgba(255, 190, 0, .15);
+
+  transition: .25s;
+}
+
+.enter-zak:hover {
+
+  transform: scale(1.02);
+
+  box-shadow:
+
+    0 0 20px #008cff,
+
+    0 0 40px #ffd21c;
+}
+
+
+/* =========================
+   SEGURANÇA
+========================= */
+
+.security-text {
+
+  margin-top: 18px;
+
+  color: #708197;
+
+  font-size: 12px;
+}
+
+
+/* =========================
+   HUB
+========================= */
+
+#zak-hub {
+
+  position: fixed;
+
+  inset: 0;
+
+  background: #020711;
+
+  overflow: hidden;
+}
+
+#zak-hub.hidden {
+
+  display: none;
+}
+
+
+.hub-background {
+
+  position: absolute;
+
+  inset: 0;
+
+  background-image:
+    linear-gradient(
+      rgba(0, 4, 12, .35),
+      rgba(0, 4, 12, .55)
+    ),
+    url("zak-hub(2).png");
+
+  background-size: cover;
+
+  background-position: center;
+
+  filter: saturate(1.15);
+
+}
+
+
+/* =========================
+   HUB CONTENT
+========================= */
+
+.hub-content {
+
+  position: relative;
+
+  z-index: 5;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.hub-logo {
+
+  font-size: 65px;
+
+  display: flex;
+
+  gap: 0;
+
+}
+
+
+.hub-logo .gold {
+
+  color: #ffd21c;
+
+  filter:
+    drop-shadow(0 0 15px #ffd21c);
+
+  transform: rotate(-18deg);
+}
+
+
+.hub-logo .blue {
+
+  color: #159cff;
+
+  filter:
+    drop-shadow(0 0 15px #159cff);
+
+  transform: rotate(18deg);
+}
+
+
+.hub-content > h1 {
+
+  font-size: 80px;
+
+  letter-spacing: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ffd21c,
+      white,
+      #159cff
+    );
+
+  -webkit-background-clip: text;
+
+  color: transparent;
+
+  text-shadow:
+    0 0 25px rgba(0,150,255,.5);
+}
+
+
+.hub-content > p {
+
+  letter-spacing: 8px;
+
+  color: #d8e4ef;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome-box {
+
+  margin-top: 35px;
+
+  width: min(600px, 90vw);
+
+  padding: 35px;
+
+  background:
+    rgba(2, 10, 25, .82);
+
+  border:
+
+    1px solid #168fff;
+
+  border-radius: 18px;
+
+  box-shadow:
+
+    0 0 25px rgba(0,140,255,.35);
+}
+
+
+.welcome-box h2 {
+
+  font-size: 28px;
+
+  margin-bottom: 12px;
+}
+
+
+.welcome-box p {
+
+  color: #a9b9ca;
+
+  margin-bottom: 25px;
+}
+
+
+#start-chat {
+
+  padding: 15px 40px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #0077ff,
+      #ffd21c
+    );
+
+  color: white;
+
+  font-weight: bold;
+
+  font-size: 16px;
+
+  cursor: pointer;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .login-container > h1 {
+
+    font-size: 55px;
+
+  }
+
+  .login-box {
+
+    padding: 25px;
+
+  }
+
+  .login-box h2 {
+
+    font-size: 23px;
+
+  }
+
+  .hub-content > h1 {
+
+    font-size: 55px;
+
+  }
 }
