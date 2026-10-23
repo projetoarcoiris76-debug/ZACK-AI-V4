@@ -1,255 +1,116 @@
-/*
-    ZAK — ISAAC AI
+/* =====================================
+   ZAK — SISTEMA DE ENTRADA
+===================================== */
 
-    LOGIN
+document.addEventListener("DOMContentLoaded", () => {
 
-    Esta versão remove a senha.
+  const loginScreen = document.getElementById("login-screen");
+  const zakHub = document.getElementById("zak-hub");
 
-    IMPORTANTE:
-    Os botões abaixo são a interface.
-    A autenticação REAL será conectada depois
-    a um serviço de autenticação.
-*/
+  const googleButton = document.getElementById("google-login");
+  const microsoftButton = document.getElementById("microsoft-login");
+  const appleButton = document.getElementById("apple-login");
+  const guestButton = document.getElementById("guest-login");
 
-
-const loginScreen =
-    document.getElementById("loginScreen");
-
-const app =
-    document.getElementById("app");
+  const startChat = document.getElementById("start-chat");
 
 
-const googleLogin =
-    document.getElementById("googleLogin");
+  /* =====================================
+     ENTRAR NO HUB
+  ===================================== */
 
-const microsoftLogin =
-    document.getElementById("microsoftLogin");
-
-const appleLogin =
-    document.getElementById("appleLogin");
-
-const otherLogin =
-    document.getElementById("otherLogin");
-
-
-const loginMessage =
-    document.getElementById("loginMessage");
-
-
-const logoutBtn =
-    document.getElementById("logoutBtn");
-
-
-const chatForm =
-    document.getElementById("chatForm");
-
-const userInput =
-    document.getElementById("userInput");
-
-const chatMessages =
-    document.getElementById("chatMessages");
-
-const chatStatus =
-    document.getElementById("chatStatus");
-
-
-/*
-    FUNÇÃO PARA ABRIR O ZAK
-*/
-
-function entrarNoZak(nome) {
-
-    loginMessage.textContent = "";
+  function enterZAK() {
 
     loginScreen.classList.add("hidden");
 
-    app.classList.remove("hidden");
+    zakHub.classList.remove("hidden");
 
-    chatStatus.textContent =
-        "Conectado como " + nome;
+    sessionStorage.setItem("zakAccess", "true");
 
-    userInput.focus();
-}
+  }
 
 
-/*
-    GOOGLE
-*/
+  /* =====================================
+     BOTÃO GOOGLE
+     
+     POR ENQUANTO:
+     abre a tela do ZAK.
+     
+     A autenticação real do Google
+     será conectada posteriormente.
+  ===================================== */
 
-googleLogin.addEventListener(
-    "click",
-    () => {
+  googleButton.addEventListener("click", () => {
 
-        loginMessage.textContent =
-            "Login com Google será conectado na próxima etapa.";
+    console.log("Login Google selecionado");
 
-    }
-);
+    enterZAK();
 
+  });
 
-/*
-    MICROSOFT
-*/
 
-microsoftLogin.addEventListener(
-    "click",
-    () => {
+  /* =====================================
+     MICROSOFT
+  ===================================== */
 
-        loginMessage.textContent =
-            "Login com Microsoft será conectado na próxima etapa.";
+  microsoftButton.addEventListener("click", () => {
 
-    }
-);
+    console.log("Login Microsoft selecionado");
 
+    enterZAK();
 
-/*
-    APPLE / ICLOUD
-*/
+  });
 
-appleLogin.addEventListener(
-    "click",
-    () => {
 
-        loginMessage.textContent =
-            "Login com Apple/iCloud será conectado na próxima etapa.";
+  /* =====================================
+     APPLE
+  ===================================== */
 
-    }
-);
+  appleButton.addEventListener("click", () => {
 
+    console.log("Login Apple selecionado");
 
-/*
-    OUTRO MÉTODO
-*/
+    enterZAK();
 
-otherLogin.addEventListener(
-    "click",
-    () => {
+  });
 
-        loginMessage.textContent =
-            "Outros métodos de login serão adicionados depois.";
 
-    }
-);
+  /* =====================================
+     ENTRADA DIRETA
+     
+     ÚTIL PARA TESTAR O SITE
+  ===================================== */
 
+  guestButton.addEventListener("click", () => {
 
-/*
-    SAIR
-*/
+    enterZAK();
 
-logoutBtn.addEventListener(
-    "click",
-    () => {
+  });
 
-        app.classList.add("hidden");
 
-        loginScreen.classList.remove("hidden");
+  /* =====================================
+     BOTÃO INICIAR CONVERSA
+  ===================================== */
 
-        loginMessage.textContent = "";
+  startChat.addEventListener("click", () => {
 
-    }
-);
+    console.log("Abrindo conversa do ZAK...");
 
+    alert("A área de conversa do ZAK será aberta aqui.");
 
-/*
-    CHAT
-*/
+  });
 
-function adicionarMensagem(
-    texto,
-    autor
-) {
 
-    const mensagem =
-        document.createElement("div");
+  /* =====================================
+     MANTER LOGIN DURANTE A SESSÃO
+  ===================================== */
 
+  if (sessionStorage.getItem("zakAccess") === "true") {
 
-    mensagem.className =
-        "message " +
-        (
-            autor === "user"
-                ? "user-message"
-                : "zak-message"
-        );
+    loginScreen.classList.add("hidden");
 
+    zakHub.classList.remove("hidden");
 
-    const nome =
-        document.createElement("strong");
+  }
 
-
-    nome.textContent =
-        autor === "user"
-            ? "VOCÊ"
-            : "ZAK";
-
-
-    const conteudo =
-        document.createElement("p");
-
-
-    conteudo.textContent =
-        texto;
-
-
-    mensagem.appendChild(nome);
-
-    mensagem.appendChild(conteudo);
-
-    chatMessages.appendChild(mensagem);
-
-
-    mensagem.scrollIntoView({
-        behavior: "smooth",
-        block: "nearest"
-    });
-
-}
-
-
-/*
-    ENVIAR MENSAGEM
-*/
-
-chatForm.addEventListener(
-    "submit",
-    (event) => {
-
-        event.preventDefault();
-
-
-        const texto =
-            userInput.value.trim();
-
-
-        if (!texto) {
-            return;
-        }
-
-
-        adicionarMensagem(
-            texto,
-            "user"
-        );
-
-
-        userInput.value = "";
-
-
-        /*
-            Temporariamente o ZAK responde
-            enquanto o backend não estiver conectado.
-        */
-
-        setTimeout(
-            () => {
-
-                adicionarMensagem(
-                    "Recebi sua mensagem! ⚡ Meu cérebro ainda precisa ser conectado ao servidor.",
-                    "zak"
-                );
-
-            },
-            500
-        );
-
-    }
-);
+});
