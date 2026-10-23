@@ -1,57 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ZAK — Sua IA, sem limites</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ZAK — ISAAC AI</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-    <!-- TELA DE LOGIN -->
-    <section id="login-screen" class="panel">
-        <h1>ZAK <span>⚡</span></h1>
-        <p>SUA IA, SEM LIMITES</p>
-        <h2>ENTRAR NO ZAK</h2>
-        <p>Escolha uma conta para continuar.</p>
+  <!-- =========================
+       TELA DE LOGIN
+  ========================== -->
+  <section id="login-screen">
 
-        <button id="google-login">G Continuar com Google</button>
-        <button id="microsoft-login">⊞ Continuar com Microsoft</button>
-        <button id="apple-login">Continuar com Apple / iCloud</button>
+    <div class="energy-background"></div>
 
-        <p id="login-message" role="status"></p>
-        <p>Ao entrar, você concorda com os termos de uso do ZAK.</p>
-    </section>
+    <div class="login-container">
 
-    <!-- HUB PRINCIPAL -->
-    <main id="zak-hub" class="panel" hidden>
-        <header>
-            <h1>⚡ ZAK</h1>
-            <p>SUA IA, SEM LIMITES</p>
-            <button id="logout-button">SAIR</button>
-        </header>
+      <div class="zak-logo">
+        <div class="lightning gold">⚡</div>
+        <div class="lightning blue">⚡</div>
+      </div>
 
-        <h2>Central ZAK</h2>
-        <p>Bem-vindo ao seu assistente.</p>
+      <h1>ZAK</h1>
 
-        <section id="chat">
-            <div id="messages">
-                <p><strong>ZAK:</strong> Login concluído! Estou pronto para conversar.</p>
-            </div>
+      <p class="subtitle">SUA IA, SEM LIMITES</p>
 
-            <form id="chat-form">
-                <input
-                    id="user-message"
-                    type="text"
-                    placeholder="Escreva sua mensagem..."
-                    autocomplete="off"
-                    required
-                >
-                <button type="submit">ENVIAR ⚡</button>
-            </form>
-        </section>
-    </main>
+      <div class="login-box">
 
-    <script type="module" src="login.js"></script>
+        <h2>ENTRE NO ZAK</h2>
+
+        <p class="login-description">
+          Escolha uma forma de entrar
+        </p>
+
+        <!-- GOOGLE -->
+        <button
+          class="login-button google"
+          id="google-login">
+          <span class="login-icon">G</span>
+          <span>Continuar com Google</span>
+        </button>
+
+        <!-- MICROSOFT -->
+        <button
+          class="login-button microsoft"
+          id="microsoft-login">
+          <span class="login-icon">⊞</span>
+          <span>Continuar com Microsoft</span>
+        </button>
+
+        <!-- APPLE -->
+        <button
+          class="login-button apple"
+          id="apple-login">
+          <span class="login-icon">●</span>
+          <span>Continuar com Apple</span>
+        </button>
+
+        <div class="login-line">
+          <span>ou</span>
+        </div>
+
+        <!-- ENTRADA DE TESTE -->
+        <button
+          class="enter-zak"
+          id="guest-login">
+          ⚡ ENTRAR NO ZAK
+        </button>
+
+        <p class="security-text">
+          🔒 Acesso protegido
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       HUB DO ZAK
+  ========================== -->
+  <section id="zak-hub" class="hidden">
+
+    <div class="hub-background"></div>
+
+    <div class="hub-content">
+
+      <div class="hub-logo">
+        <span class="gold">⚡</span>
+        <span class="blue">⚡</span>
+      </div>
+
+      <h1>ZAK</h1>
+
+      <p>SUA IA, SEM LIMITES</p>
+
+      <div class="welcome-box">
+
+        <h2>BEM-VINDO AO ZAK ⚡</h2>
+
+        <p>
+          Seu acesso foi autorizado.
+        </p>
+
+        <button id="start-chat">
+          ⚡ INICIAR CONVERSA
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <script src="app.js"></script>
+
 </body>
 </html>
