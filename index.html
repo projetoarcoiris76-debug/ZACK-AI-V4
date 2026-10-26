@@ -5,185 +5,59 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>ZAK — ISAAC AI</title>
+  <title>ZAK — Sua IA, sem limites</title>
 
   <link rel="stylesheet" href="style.css">
-
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup,
-      onAuthStateChanged,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "COLOQUE_SUA_API_KEY_AQUI",
-      authDomain: "zak-ai-v4.firebaseapp.com",
-      projectId: "zak-ai-v4",
-      storageBucket: "zak-ai-v4.firebasestorage.app",
-      messagingSenderId: "COLOQUE_SEU_MESSAGING_SENDER_ID",
-      appId: "COLOQUE_SEU_APP_ID"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    window.loginGoogle = async function () {
-      try {
-        await signInWithPopup(auth, provider);
-      } catch (error) {
-        console.error(error);
-
-        if (error.code === "auth/popup-closed-by-user") {
-          return;
-        }
-
-        alert("Não foi possível entrar com o Google.");
-      }
-    };
-
-    window.logoutZAK = async function () {
-      await signOut(auth);
-    };
-
-    onAuthStateChanged(auth, (user) => {
-      const loginScreen = document.getElementById("login-screen");
-      const zakHub = document.getElementById("zak-hub");
-      const userName = document.getElementById("user-name");
-      const userPhoto = document.getElementById("user-photo");
-
-      if (user) {
-        loginScreen.classList.add("hidden");
-        zakHub.classList.remove("hidden");
-
-        if (userName) {
-          userName.textContent = user.displayName || "Usuário";
-        }
-
-        if (userPhoto && user.photoURL) {
-          userPhoto.src = user.photoURL;
-          userPhoto.classList.remove("hidden");
-        }
-      } else {
-        loginScreen.classList.remove("hidden");
-        zakHub.classList.add("hidden");
-      }
-    });
-  </script>
 </head>
 
 <body>
 
-  <!-- FUNDO -->
-  <div class="energy-bg"></div>
+  <div class="background"></div>
 
-  <!-- LOGIN -->
   <main id="login-screen">
 
-    <div class="login-container">
+    <section class="zak-login">
 
-      <div class="logo-area">
-
+      <div class="zak-logo">
         <div class="crossed-energy">
-          <div class="energy-sword gold"></div>
-          <div class="energy-sword blue"></div>
+          <span class="energy blue"></span>
+          <span class="energy gold"></span>
         </div>
 
         <h1>ZAK</h1>
-
-        <p>S U A &nbsp; I A , &nbsp; S E M &nbsp; L I M I T E S</p>
+        <p>SUA IA, SEM LIMITES</p>
       </div>
 
-      <section class="login-card">
-
-        <div class="glitch-line"></div>
+      <div class="login-box">
 
         <h2>FAÇA SEU LOGIN</h2>
 
-        <p class="login-description">
+        <p class="subtitle">
           Entre para acessar o universo do ZAK
         </p>
 
-        <button class="google-login" onclick="loginGoogle()">
-
+        <button id="google-login" class="login-button">
           <span class="google-icon">G</span>
-
           <span>ENTRAR COM GOOGLE</span>
-
-          <span class="login-arrow">→</span>
-
         </button>
 
-        <div class="login-status">
-          🔐 Login seguro pelo Google
-        </div>
+        <button id="microsoft-login" class="login-button microsoft">
+          <span class="provider-icon">▦</span>
+          <span>ENTRAR COM MICROSOFT</span>
+        </button>
 
-      </section>
+        <button id="apple-login" class="login-button apple">
+          <span class="provider-icon"></span>
+          <span>ENTRAR COM APPLE</span>
+        </button>
 
-    </div>
-
-  </main>
-
-
-  <!-- HUB -->
-  <main id="zak-hub" class="hidden">
-
-    <section class="hub-container">
-
-      <div class="hub-logo">
-
-        <div class="crossed-energy small">
-          <div class="energy-sword gold"></div>
-          <div class="energy-sword blue"></div>
-        </div>
-
-        <h1>ZAK</h1>
-
-        <p>SUA IA, SEM LIMITES</p>
-
-      </div>
-
-      <div class="hub-card">
-
-        <div class="glitch-line"></div>
-
-        <p class="welcome-small">
-          ACESSO AUTORIZADO
+        <p id="login-status" class="status">
+          Escolha uma forma de entrar.
         </p>
 
-        <h2>
-          BEM-VINDO AO ZAK
-          <span>⚡</span>
-        </h2>
-
-        <p>
-          Olá, <strong id="user-name">Usuário</strong>.
-        </p>
-
-        <img
-          id="user-photo"
-          class="user-photo hidden"
-          alt="Foto do usuário"
-        >
-
-        <button
-          class="start-button"
-          onclick="startZAK()"
-        >
-          ⚡ INICIAR CONVERSA
-        </button>
-
-        <button
-          class="logout-button"
-          onclick="logoutZAK()"
-        >
-          SAIR
-        </button>
+        <div class="security">
+          🔒 Login protegido pelo Firebase
+        </div>
 
       </div>
 
@@ -192,7 +66,37 @@
   </main>
 
 
-  <script src="app.js"></script>
+  <!-- HUB DO ZAK -->
+
+  <section id="zak-hub" class="hidden">
+
+    <div class="hub-content">
+
+      <div class="hub-logo">
+        <h1>ZAK</h1>
+        <p>SUA IA, SEM LIMITES</p>
+      </div>
+
+      <h2>BEM-VINDO AO ZAK ⚡</h2>
+
+      <p id="user-name">
+        Seu acesso foi autorizado.
+      </p>
+
+      <button id="start-zak">
+        ⚡ INICIAR CONVERSA
+      </button>
+
+      <button id="logout" class="logout-button">
+        Sair
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <script type="module" src="app.js"></script>
 
 </body>
 </html>
