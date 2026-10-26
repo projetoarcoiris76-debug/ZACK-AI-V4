@@ -1,116 +1,162 @@
-/* =====================================
-   ZAK — SISTEMA DE ENTRADA
-===================================== */
+```javascript
+/* =========================================
+   ZAK — APP
+   ========================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  const loginScreen = document.getElementById("login-screen");
-  const zakHub = document.getElementById("zak-hub");
-
-  const googleButton = document.getElementById("google-login");
-  const microsoftButton = document.getElementById("microsoft-login");
-  const appleButton = document.getElementById("apple-login");
-  const guestButton = document.getElementById("guest-login");
-
-  const startChat = document.getElementById("start-chat");
-
-
-  /* =====================================
-     ENTRAR NO HUB
-  ===================================== */
-
-  function enterZAK() {
-
-    loginScreen.classList.add("hidden");
-
-    zakHub.classList.remove("hidden");
-
-    sessionStorage.setItem("zakAccess", "true");
-
-  }
-
-
-  /* =====================================
-     BOTÃO GOOGLE
-     
-     POR ENQUANTO:
-     abre a tela do ZAK.
-     
-     A autenticação real do Google
-     será conectada posteriormente.
-  ===================================== */
-
-  googleButton.addEventListener("click", () => {
-
-    console.log("Login Google selecionado");
-
-    enterZAK();
-
-  });
-
-
-  /* =====================================
-     MICROSOFT
-  ===================================== */
-
-  microsoftButton.addEventListener("click", () => {
-
-    console.log("Login Microsoft selecionado");
-
-    enterZAK();
-
-  });
-
-
-  /* =====================================
-     APPLE
-  ===================================== */
-
-  appleButton.addEventListener("click", () => {
-
-    console.log("Login Apple selecionado");
-
-    enterZAK();
-
-  });
-
-
-  /* =====================================
-     ENTRADA DIRETA
-     
-     ÚTIL PARA TESTAR O SITE
-  ===================================== */
-
-  guestButton.addEventListener("click", () => {
-
-    enterZAK();
-
-  });
-
-
-  /* =====================================
-     BOTÃO INICIAR CONVERSA
-  ===================================== */
-
-  startChat.addEventListener("click", () => {
-
-    console.log("Abrindo conversa do ZAK...");
-
-    alert("A área de conversa do ZAK será aberta aqui.");
-
-  });
-
-
-  /* =====================================
-     MANTER LOGIN DURANTE A SESSÃO
-  ===================================== */
-
-  if (sessionStorage.getItem("zakAccess") === "true") {
-
-    loginScreen.classList.add("hidden");
-
-    zakHub.classList.remove("hidden");
-
-  }
+  console.log("⚡ ZAK iniciado.");
 
 });
+
+
+/* =========================================
+   INICIAR CONVERSA
+   ========================================= */
+
+function startZAK() {
+
+  console.log("⚡ Iniciando conversa com ZAK...");
+
+  const hub = document.getElementById("zak-hub");
+
+  if (!hub) {
+    return;
+  }
+
+  /*
+    Por enquanto o botão abre a área de conversa
+    em uma tela simples.
+
+    Depois podemos conectar o cérebro/API do ZAK aqui.
+  */
+
+  const existingChat = document.getElementById("zak-chat");
+
+  if (existingChat) {
+    existingChat.classList.remove("hidden");
+    return;
+  }
+
+  const chat = document.createElement("section");
+
+  chat.id = "zak-chat";
+
+  chat.innerHTML = `
+    <div class="chat-box">
+
+      <div class="chat-header">
+        <span>⚡ ZAK</span>
+        <span class="chat-status">ONLINE</span>
+      </div>
+
+      <div class="chat-messages">
+
+        <div class="zak-message">
+          ⚡ Sistema ZAK online.
+          <br><br>
+          Bem-vindo ao meu núcleo de inteligência.
+        </div>
+
+      </div>
+
+      <div class="chat-input-area">
+
+        <input
+          id="zak-message-input"
+          type="text"
+          placeholder="Digite sua mensagem..."
+          autocomplete="off"
+        >
+
+        <button id="zak-send">
+          ➤
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.body.appendChild(chat);
+
+  const input = document.getElementById("zak-message-input");
+  const send = document.getElementById("zak-send");
+
+  send.addEventListener("click", sendMessage);
+
+  input.addEventListener("keydown", (event) => {
+
+    if (event.key === "Enter") {
+      sendMessage();
+    }
+
+  });
+
+  input.focus();
+}
+
+
+/* =========================================
+   ENVIAR MENSAGEM
+   ========================================= */
+
+function sendMessage() {
+
+  const input = document.getElementById("zak-message-input");
+
+  const messages = document.querySelector(".chat-messages");
+
+  if (!input || !messages) {
+    return;
+  }
+
+  const text = input.value.trim();
+
+  if (!text) {
+    return;
+  }
+
+  const userMessage = document.createElement("div");
+
+  userMessage.className = "user-message";
+
+  userMessage.textContent = text;
+
+  messages.appendChild(userMessage);
+
+  input.value = "";
+
+  messages.scrollTop = messages.scrollHeight;
+
+  setTimeout(() => {
+
+    const zakMessage = document.createElement("div");
+
+    zakMessage.className = "zak-message";
+
+    zakMessage.textContent =
+      "⚡ Recebi sua mensagem. O cérebro do ZAK ainda precisa ser conectado à API para gerar respostas de IA.";
+
+    messages.appendChild(zakMessage);
+
+    messages.scrollTop = messages.scrollHeight;
+
+  }, 500);
+}
+
+
+/* =========================================
+   FECHAR CHAT
+   ========================================= */
+
+function closeZAKChat() {
+
+  const chat = document.getElementById("zak-chat");
+
+  if (chat) {
+    chat.remove();
+  }
+
+}
+```
