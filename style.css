@@ -1,632 +1,511 @@
 ```css
+/* =========================================================
+   ZAK AI — HUB DE ENTRADA
+   ========================================================= */
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,
 body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background:
-    radial-gradient(circle at 50% 45%, #071b35 0%, #020914 40%, #000308 100%);
-  color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        radial-gradient(circle at 50% 25%, rgba(0, 119, 255, 0.16), transparent 35%),
+        linear-gradient(135deg, #020711, #041225 50%, #02050b);
+    color: white;
+    overflow-x: hidden;
 }
 
-/* FUNDO */
-
-.energy-bg {
-  position: fixed;
-  inset: 0;
-  z-index: -5;
-
-  background:
-    radial-gradient(circle at 25% 50%, rgba(255, 180, 0, 0.16), transparent 35%),
-    radial-gradient(circle at 75% 50%, rgba(0, 110, 255, 0.20), transparent 35%),
-    linear-gradient(135deg, #02050b, #061426, #01040a);
-
-  overflow: hidden;
-}
-
-.energy-bg::before {
-  content: "";
-  position: absolute;
-  width: 80vw;
-  height: 80vw;
-  left: -25vw;
-  top: -20vw;
-
-  background:
-    repeating-linear-gradient(
-      45deg,
-      transparent 0,
-      transparent 30px,
-      rgba(0, 140, 255, 0.035) 31px,
-      transparent 32px
-    );
-
-  transform: rotate(10deg);
-}
-
-.energy-bg::after {
-  content: "";
-  position: absolute;
-  width: 80vw;
-  height: 80vw;
-  right: -25vw;
-  top: -20vw;
-
-  background:
-    repeating-linear-gradient(
-      -45deg,
-      transparent 0,
-      transparent 30px,
-      rgba(255, 190, 0, 0.035) 31px,
-      transparent 32px
-    );
-
-  transform: rotate(-10deg);
-}
-
-
-/* LOGIN */
+/* =========================================================
+   FUNDO
+   ========================================================= */
 
 #login-screen {
-  width: 100%;
-  height: 100vh;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-  padding: 30px;
+    padding: 30px 20px;
+
+    background-image:
+        linear-gradient(
+            rgba(0, 5, 15, 0.20),
+            rgba(0, 5, 15, 0.30)
+        ),
+        url("zak-hub(2).png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    isolation: isolate;
 }
 
-.login-container {
-  width: min(900px, 95vw);
+/* brilho azul */
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+#login-screen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 30% 55%,
+            rgba(0, 110, 255, 0.16),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 70% 55%,
+            rgba(255, 190, 0, 0.13),
+            transparent 35%
+        );
+
+    pointer-events: none;
+    z-index: -1;
 }
 
+/* =========================================================
+   CONTEÚDO PRINCIPAL
+   ========================================================= */
 
-/* LOGO */
+.zak-container {
+    width: min(700px, 92vw);
 
-.logo-area {
-  text-align: center;
-  margin-bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+
+    transform: translateY(15px);
 }
 
-.logo-area h1,
-.hub-logo h1 {
-  font-size: clamp(70px, 9vw, 125px);
-  font-weight: 900;
-  letter-spacing: 10px;
+/* =========================================================
+   LOGO
+   ========================================================= */
 
-  background: linear-gradient(
-    90deg,
-    #ffffff,
-    #55c9ff,
-    #ffffff,
-    #ffd84a
-  );
+.zak-logo {
+    width: min(430px, 72vw);
+    max-height: 230px;
 
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+    object-fit: contain;
 
-  text-shadow:
-    0 0 15px rgba(0, 150, 255, 0.8),
-    0 0 35px rgba(255, 190, 0, 0.35);
+    margin-bottom: 8px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(0, 140, 255, 0.75))
+        drop-shadow(0 0 20px rgba(255, 190, 0, 0.35));
+
+    animation: logoGlow 3s ease-in-out infinite alternate;
 }
 
-.logo-area p,
-.hub-logo p {
-  letter-spacing: 8px;
-  color: #c7d4e8;
-  font-size: 12px;
+@keyframes logoGlow {
+    from {
+        filter:
+            drop-shadow(0 0 8px rgba(0, 140, 255, 0.55))
+            drop-shadow(0 0 12px rgba(255, 190, 0, 0.25));
+    }
+
+    to {
+        filter:
+            drop-shadow(0 0 18px rgba(0, 140, 255, 0.9))
+            drop-shadow(0 0 24px rgba(255, 190, 0, 0.5));
+    }
 }
 
+/* =========================================================
+   SUBTÍTULO
+   ========================================================= */
 
-/* ESPADAS DE ENERGIA */
+.zak-subtitle {
+    margin-bottom: 18px;
 
-.crossed-energy {
-  position: relative;
+    color: #f3f5ff;
 
-  width: 360px;
-  height: 100px;
+    font-size: 13px;
+    letter-spacing: 7px;
+    text-transform: uppercase;
 
-  margin: -25px auto -10px;
+    text-shadow:
+        0 0 8px rgba(0, 140, 255, 0.7),
+        0 0 12px rgba(255, 190, 0, 0.35);
 }
 
-.energy-sword {
-  position: absolute;
+/* =========================================================
+   PAINEL DE LOGIN
+   ========================================================= */
 
-  width: 270px;
-  height: 8px;
+.login-card {
+    position: relative;
 
-  top: 48px;
+    width: min(410px, 90vw);
 
-  border-radius: 50%;
+    padding: 25px 28px 23px;
 
-  transform-origin: center;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(3, 16, 35, 0.96),
+            rgba(1, 8, 20, 0.97)
+        );
 
-  filter: blur(0.2px);
+    border: 2px solid #168cff;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 10px rgba(0, 132, 255, 0.8),
+        0 0 28px rgba(0, 102, 255, 0.35),
+        inset 0 0 25px rgba(0, 102, 255, 0.12);
+
+    overflow: hidden;
 }
 
-.energy-sword::before {
-  content: "";
-  position: absolute;
-  inset: -7px;
+/* detalhe dourado */
 
-  border-radius: 50%;
+.login-card::before {
+    content: "";
 
-  filter: blur(9px);
-}
+    position: absolute;
 
-.energy-sword::after {
-  content: "";
-  position: absolute;
+    top: -2px;
+    left: 18%;
+    right: 18%;
 
-  right: -12px;
-  top: -5px;
+    height: 3px;
 
-  width: 18px;
-  height: 18px;
-
-  transform: rotate(45deg);
-
-  border-radius: 3px;
-}
-
-.energy-sword.gold {
-  left: 5px;
-
-  background: linear-gradient(
-    90deg,
-    #6e4000,
-    #ffd42a,
-    #fff4a0,
-    #ffb300
-  );
-
-  transform: rotate(25deg);
-
-  box-shadow:
-    0 0 8px #ffd000,
-    0 0 22px #ffb000,
-    0 0 45px rgba(255, 180, 0, 0.8);
-}
-
-.energy-sword.gold::before {
-  background: #ffb000;
-}
-
-.energy-sword.gold::after {
-  background: #ffd52a;
-}
-
-.energy-sword.blue {
-  right: 5px;
-
-  background: linear-gradient(
-    90deg,
-    #063a91,
-    #008cff,
-    #b5efff,
-    #006aff
-  );
-
-  transform: rotate(-25deg);
-
-  box-shadow:
-    0 0 8px #008cff,
-    0 0 22px #0077ff,
-    0 0 45px rgba(0, 130, 255, 0.9);
-}
-
-.energy-sword.blue::before {
-  background: #007bff;
-}
-
-.energy-sword.blue::after {
-  background: #36b8ff;
-}
-
-
-/* CARD */
-
-.login-card,
-.hub-card {
-
-  width: min(680px, 95vw);
-
-  padding: 45px 55px;
-
-  position: relative;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 25, 48, 0.94),
-      rgba(2, 9, 20, 0.97)
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #168cff,
+        #ffd21c,
+        #168cff,
+        transparent
     );
 
-  border: 1px solid rgba(0, 157, 255, 0.9);
-
-  border-radius: 24px;
-
-  box-shadow:
-    0 0 15px rgba(0, 157, 255, 0.5),
-    0 0 45px rgba(0, 130, 255, 0.18),
-    inset 0 0 35px rgba(0, 130, 255, 0.06);
-
-  text-align: center;
-
-  overflow: hidden;
+    box-shadow:
+        0 0 8px #168cff,
+        0 0 15px #ffd21c;
 }
 
-.login-card::before,
-.hub-card::before {
-  content: "";
+/* cantos tecnológicos */
 
-  position: absolute;
-  inset: 0;
+.login-card::after {
+    content: "";
 
-  background:
-    repeating-linear-gradient(
-      0deg,
-      transparent 0,
-      transparent 7px,
-      rgba(255,255,255,0.012) 8px
-    );
+    position: absolute;
+    inset: 8px;
 
-  pointer-events: none;
+    border: 1px solid rgba(0, 145, 255, 0.18);
+
+    border-radius: 12px;
+
+    pointer-events: none;
 }
 
+/* =========================================================
+   TÍTULO
+   ========================================================= */
 
-/* LINHA GLITCH */
+.login-card h1 {
+    position: relative;
+    z-index: 2;
 
-.glitch-line {
+    font-size: 25px;
+    font-weight: 800;
 
-  position: absolute;
+    margin-bottom: 7px;
 
-  top: 0;
-  left: 12%;
+    color: #ffffff;
 
-  width: 76%;
-  height: 3px;
-
-  background: linear-gradient(
-    90deg,
-    transparent,
-    #008cff,
-    #ffd21c,
-    #008cff,
-    transparent
-  );
-
-  box-shadow:
-    0 0 10px #008cff,
-    0 0 25px #ffd21c;
+    text-shadow:
+        0 0 7px rgba(0, 150, 255, 0.8);
 }
 
+.login-card p {
+    position: relative;
+    z-index: 2;
 
-/* TEXTOS */
+    color: #b9c7db;
 
-.login-card h2,
-.hub-card h2 {
+    font-size: 14px;
 
-  font-size: 32px;
-  font-weight: 900;
-
-  margin-bottom: 10px;
-
-  text-shadow:
-    0 0 10px rgba(255,255,255,0.4);
+    margin-bottom: 17px;
 }
 
-.login-description {
-  color: #aebdd0;
-  margin-bottom: 30px;
-}
-
-
-/* GOOGLE */
+/* =========================================================
+   GOOGLE
+   ========================================================= */
 
 .google-login {
+    position: relative;
+    z-index: 5;
 
-  width: 100%;
-  min-height: 65px;
+    width: 100%;
 
-  border: 1px solid #148cff;
+    min-height: 43px;
 
-  border-radius: 14px;
+    border: none;
+    border-radius: 9px;
 
-  background:
-    linear-gradient(
-      90deg,
-      #087cff,
-      #164edb,
-      #f2bd18
+    background: linear-gradient(
+        90deg,
+        #168cff,
+        #ffffff,
+        #ffd21c
     );
 
-  color: white;
+    color: #06111f;
 
-  font-size: 17px;
-  font-weight: 900;
+    font-size: 14px;
+    font-weight: 900;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
+    cursor: pointer;
 
-  cursor: pointer;
-
-  box-shadow:
-    0 0 18px rgba(0, 140, 255, 0.4),
-    0 0 30px rgba(255, 190, 0, 0.15);
-
-  transition: 0.25s;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .google-login:hover {
+    transform: translateY(-2px);
 
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 0 25px rgba(0, 140, 255, 0.7),
-    0 0 45px rgba(255, 190, 0, 0.3);
+    box-shadow:
+        0 0 10px #168cff,
+        0 0 22px rgba(255, 210, 28, 0.65);
 }
 
-.google-icon {
-
-  width: 32px;
-  height: 32px;
-
-  border-radius: 50%;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  background: white;
-  color: #4285f4;
-
-  font-weight: 900;
-  font-size: 20px;
+.google-login:active {
+    transform: scale(0.98);
 }
 
-.login-arrow {
-  font-size: 25px;
+/* =========================================================
+   DIVISOR
+   ========================================================= */
+
+.login-divider {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin: 15px 0;
+
+    color: #73839a;
+
+    font-size: 11px;
 }
 
-.login-status {
+.login-divider::before,
+.login-divider::after {
+    content: "";
 
-  margin-top: 22px;
+    flex: 1;
 
-  color: #8998aa;
+    height: 1px;
 
-  font-size: 13px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #168cff,
+        transparent
+    );
 }
 
+/* =========================================================
+   CAMPO DE E-MAIL
+   ========================================================= */
 
-/* HUB */
+.login-input {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+
+    height: 43px;
+
+    padding: 0 15px;
+
+    border: 1px solid #168cff;
+    border-radius: 9px;
+
+    outline: none;
+
+    background: rgba(1, 8, 20, 0.92);
+
+    color: white;
+
+    font-size: 13px;
+
+    box-shadow:
+        inset 0 0 10px rgba(0, 110, 255, 0.14),
+        0 0 7px rgba(0, 110, 255, 0.25);
+
+    transition: 0.2s;
+}
+
+.login-input::placeholder {
+    color: #8798ad;
+}
+
+.login-input:focus {
+    border-color: #ffd21c;
+
+    box-shadow:
+        0 0 8px rgba(0, 140, 255, 0.7),
+        0 0 14px rgba(255, 210, 28, 0.25);
+}
+
+/* =========================================================
+   BOTÃO ENTRAR
+   ========================================================= */
+
+.login-button {
+    position: relative;
+    z-index: 5;
+
+    width: 100%;
+
+    height: 45px;
+
+    margin-top: 12px;
+
+    border: 1px solid #ffd21c;
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #087eff 0%,
+            #126fff 35%,
+            #d99f00 72%,
+            #ffd21c 100%
+        );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 8px rgba(0, 140, 255, 0.7),
+        0 0 16px rgba(255, 190, 0, 0.3);
+
+    transition: 0.2s;
+}
+
+.login-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 12px #168cff,
+        0 0 24px rgba(255, 210, 28, 0.65);
+}
+
+.login-button:active {
+    transform: scale(0.98);
+}
+
+/* =========================================================
+   TEXTO DE SEGURANÇA
+   ========================================================= */
+
+.login-security {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 13px;
+
+    color: #8294aa;
+
+    font-size: 10px;
+}
+
+/* =========================================================
+   HUB
+   ========================================================= */
 
 #zak-hub {
+    display: none;
 
-  width: 100%;
-  height: 100vh;
+    width: 100%;
+    min-height: 100vh;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    align-items: center;
+    justify-content: center;
 
-  padding: 30px;
+    background:
+        radial-gradient(
+            circle at center,
+            #071a35,
+            #02050b 70%
+        );
+
+    color: white;
 }
 
-.hub-container {
+/* =========================================================
+   RESPONSIVO
+   ========================================================= */
 
-  width: min(900px, 95vw);
+@media (max-width: 700px) {
 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    #login-screen {
+        padding: 20px 12px;
+    }
+
+    .zak-container {
+        transform: none;
+    }
+
+    .zak-logo {
+        width: min(330px, 80vw);
+    }
+
+    .zak-subtitle {
+        font-size: 10px;
+        letter-spacing: 4px;
+    }
+
+    .login-card {
+        width: min(370px, 94vw);
+
+        padding: 21px 20px 20px;
+    }
+
+    .login-card h1 {
+        font-size: 21px;
+    }
 }
 
-.hub-logo {
-
-  text-align: center;
-
-  margin-bottom: 20px;
-}
-
-.hub-logo h1 {
-
-  font-size: 75px;
-}
-
-.crossed-energy.small {
-
-  transform: scale(0.7);
-
-  margin-bottom: -20px;
-}
-
-.welcome-small {
-
-  color: #58baff;
-
-  letter-spacing: 5px;
-
-  font-size: 12px;
-
-  margin-bottom: 12px;
-}
-
-.hub-card h2 {
-
-  font-size: 35px;
-}
-
-.hub-card p {
-
-  color: #b9c6d5;
-
-  margin: 10px 0;
-}
-
-.user-photo {
-
-  width: 55px;
-  height: 55px;
-
-  border-radius: 50%;
-
-  border: 2px solid #ffc928;
-
-  margin: 10px;
-
-  box-shadow:
-    0 0 15px rgba(255, 200, 0, 0.5);
-}
-
-
-/* BOTÃO INICIAR */
-
-.start-button {
-
-  width: 100%;
-
-  min-height: 65px;
-
-  margin-top: 25px;
-
-  border: none;
-
-  border-radius: 14px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #078cff,
-      #1166df,
-      #ffd11a
-    );
-
-  color: white;
-
-  font-size: 18px;
-
-  font-weight: 900;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 0 25px rgba(0, 130, 255, 0.35);
-
-  transition: 0.25s;
-}
-
-.start-button:hover {
-
-  transform: scale(1.02);
-
-  box-shadow:
-    0 0 35px rgba(0, 130, 255, 0.65);
-}
-
-
-/* SAIR */
-
-.logout-button {
-
-  margin-top: 15px;
-
-  background: transparent;
-
-  border: 1px solid rgba(255,255,255,0.2);
-
-  color: #8795a6;
-
-  padding: 9px 22px;
-
-  border-radius: 8px;
-
-  cursor: pointer;
-}
-
-.logout-button:hover {
-
-  border-color: #ff4b4b;
-  color: #ff7777;
-}
-
-
-/* HIDDEN */
-
-.hidden {
-  display: none !important;
-}
-
-
-/* GLITCH */
-
-@keyframes glitch {
-
-  0% {
-    transform: translate(0);
-  }
-
-  20% {
-    transform: translate(-2px, 1px);
-  }
-
-  40% {
-    transform: translate(2px, -1px);
-  }
-
-  60% {
-    transform: translate(-1px, 2px);
-  }
-
-  80% {
-    transform: translate(1px, -2px);
-  }
-
-  100% {
-    transform: translate(0);
-  }
-}
-
-
-/* CELULAR */
-
-@media (max-width: 600px) {
-
-  .login-card,
-  .hub-card {
-    padding: 35px 22px;
-  }
-
-  .crossed-energy {
-    transform: scale(0.75);
-  }
-
-  .login-card h2,
-  .hub-card h2 {
-    font-size: 25px;
-  }
-
-  .google-login {
-    font-size: 14px;
-  }
+@media (max-height: 700px) {
+
+    .zak-logo {
+        width: 270px;
+        max-height: 145px;
+    }
+
+    .zak-subtitle {
+        margin-bottom: 10px;
+    }
+
+    .login-card {
+        padding: 17px 22px;
+    }
 }
 ```
